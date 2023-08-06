@@ -1,11 +1,8 @@
 # pip install -r requirements.txt
-torch==1.10.1
-torchvision==0.11.2
-tqdm
-pillow
-numpy
-cv2
-mmcv==1.5.3
-matplotlib
-einops==0.4.1
-timm==0.5.4
+numpy==1.22.2
+pillow==9.4.0
+torch==1.13.0
+torchvision==0.14.0
+scikit-image==0.18.3
+opencv-python==4.1.2.30
+setuptools==58.2.0
