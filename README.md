@@ -9,9 +9,33 @@
 #### For Polyp Segmentation : [HarDNet-MSEG](https://github.com/james128333/HarDNet-MSEG) 90.4% mDice / 119 FPS on Kvasir-SEG @352x352
 
 
+## Installation & Usage
+### Environment setting (Prerequisites)
+```
+conda create -n fchardnet python=3.6
+conda activate fchardnet
+pip install -r requirements.txt
+```
+
+### FC-HarDNet Setting
+```
+cd CatConv2d/
+python setup.py install
+```
+
+### Dataset conversion
+- cell:
+    ```
+    python convert_masks.py --mode cell --cell_radius 5 --data_path path/to/cell_csv_folder/ --save_path path/to/cell_images/masks/
+    ```
+- tissue:
+    ```
+    python convert_masks.py --mode tissue --data_path path/to/tissue_png_mask_folder/ --save_path path/to/tissue_images/masks/
+    ```
+
 ### Training
 
-1. Download pretrain_weight: [hardnet_petite_base.pth](https://github.com/PingoLH/FCHarDNet/tree/master/weights) and place in the folder ``` /weights ``` 
+1. Download pretrain_weight: [hardnet_petite_base.pth](https://github.com/PingoLH/FCHarDNet/tree/master/weights) and change the --weight in Optional Args
 2. Run:
     - cell:
     ```
@@ -39,11 +63,12 @@
     ```
 
 ### Inference
-
-Run:
-```
-python process.py
-```
+- Input/output formats can be found in [OCELOT 2023: Detecting Cells from Cell-Tissue Interactions](https://github.com/lunit-io/ocelot23algo/tree/main).
+- Do a simple test by running the following command. 
+    Run:
+    ```
+    python process.py
+    ```
 
 ## Acknowledgement
 - This research is supported in part by a grant from the **Ministry of Science and Technology (MOST) of Taiwan**.   
@@ -52,15 +77,6 @@ We thank **National Center for High-performance Computing (NCHC)** for providing
 ## Citation
 If you find this project useful for your research, please use the following BibTeX entry.
 ```
-  @misc{2022hardnetdfus,
-  title = {HarDNet-DFUS: An Enhanced Harmonically-Connected Network for Diabetic Foot Ulcer Image Segmentation and Colonoscopy Polyp Segmentation},
-  author = {Liao, Ting-Yu and Yang, Ching-Hui and Lo, Yu-Wen and Lai, Kuan-Ying and Shen, Po-Huai and Lin, Youn-Long},
-  year = {2022},
-  eprint={2209.07313},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV}
-  }
-
   @inproceedings{chao2019hardnet,
   title={Hardnet: A low memory traffic network},
   author={Chao, Ping and Kao, Chao-Yang and Ruan, Yu-Shan and Huang, Chien-Hsiang and Lin, Youn-Long},
