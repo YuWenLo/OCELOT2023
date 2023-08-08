@@ -11,7 +11,7 @@ def arg_parser():
     parser.add_argument('--cell_radius', type=int, default=5, help='radius of cells')
 
     parser.add_argument('--save_path', type=str, default='pred_mask', help='path to save mask')
-    parser.add_argument('--data_path', nargs='+', type=str, default='../DFUC2022_val' , help='path to testing data')
+    parser.add_argument('--data_path', type=str, default='../DFUC2022_val' , help='path to testing data')
     
     return parser.parse_args()
 

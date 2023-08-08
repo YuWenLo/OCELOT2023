@@ -33,6 +33,7 @@ def arg_parser():
     parser.add_argument('--k', type=int, default=-1, help='specific # fold')
     parser.add_argument('--seed', type=int, default=42, help='random seed for split data')
     parser.add_argument('--lr', type=float, default=1e-4, help='learning rate')
+    parser.add_argument('--save_path', type=str, default='save_path', help='path to save weights')
     parser.add_argument('--name', type=str, default='exp', help='exp name to annotate this training')
     parser.add_argument('--optimizer', type=str, default='AdamW', help='choose optimizer')
     parser.add_argument('--loss', type=str, default='structure_loss', help='choose optimizer')
@@ -43,7 +44,7 @@ def arg_parser():
 
     # for data
     parser.add_argument('--dataratio', type=float,default=0.8, help='ratio of data for training/val')
-    parser.add_argument('--data_path', nargs='+', type=str, default='../', help='path to training data')
+    parser.add_argument('--data_path', type=str, default='../', help='path to training data')
     parser.add_argument('--augmentation', action='store_true', help='activate data augmentation')
 
     # for model
@@ -235,7 +236,7 @@ if __name__ == '__main__':
     opt.global_rank = int(os.environ['RANK']) if 'RANK' in os.environ else -1   
     
     if opt.kfold == 1:
-        save_path = os.path.join('/work/wagw1014/OCELOT/fc/weights_7_19', opt.name)
+        save_path = os.path.join(opt.save_path, opt.name)
         os.makedirs(save_path, exist_ok=True)
         
         logname = save_path + '/' + opt.name + '_' + time.strftime("%Y%m%d%H%M%S", time.localtime()) + '.log'
@@ -251,7 +252,7 @@ if __name__ == '__main__':
             if opt.k != -1:
                 k = opt.k
 
-            save_path = os.path.join('/work/wagw1014/OCELOT/fc/weights_7_19', opt.name, str(k))
+            save_path = os.path.join(opt.save_path, opt.name, str(k))
             os.makedirs(save_path, exist_ok=True)
             
             logname = save_path + '/' + opt.name + '_' + time.strftime("%Y%m%d%H%M%S", time.localtime()) + '.log'

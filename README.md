@@ -20,7 +20,8 @@ pip install -r requirements.txt
 ### FC-HarDNet Setting
 ```
 cd CatConv2d/
-python setup.py install
+pip install .
+python setup.py install --user
 ```
 
 ### Dataset conversion
@@ -39,7 +40,7 @@ python setup.py install
 2. Run:
     - cell:
     ```
-    python train.py --mode cell --augmentation --data_path /work/wagw1014/OCELOT/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight /home/wagw1014/FCHarDNet/weights/hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 300 --name all5fold_cell_1c_r5 --loss structure_loss --cell_size 5 --kfold 5
+    python train.py --mode cell --augmentation --data_path /work/wagw1014/ocelot_test/ocelot2023_v0.1.2/images/train/cell/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight /home/wagw1014/FCHarDNet/weights/hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 300 --name cell_test --loss structure_loss --kfold 5 --save_path /work/wagw1014/ocelot_test/
 
     Optional Args:
     --augmentation Activating data audmentation during training
@@ -48,10 +49,11 @@ python setup.py install
     --dataratio    Specifying the ratio of data for training
     --seed         Reproducing the result of data spliting in dataloader
     --data_path    Path to training data
+    --save_path    Path to save training weights
     ```
     - tissue:
     ```
-    python train.py --mod tissue --augmentation --data_path /work/wagw1014/OCELOT/tissue/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight /home/wagw1014/FCHarDNet/weights/hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 1000 --name all5fold_tissue_strloss_1000e --loss structure_loss --kfold 5
+    python train.py --mode tissue --augmentation --data_path /work/wagw1014/ocelot_test/train/tissue/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight /home/wagw1014/FCHarDNet/weights/hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 1000 --name tissue_test --loss structure_loss --kfold 5 --save_path /work/wagw1014/ocelot_test/
 
     Optional Args:
     --augmentation Activating data audmentation during training
@@ -60,6 +62,7 @@ python setup.py install
     --dataratio    Specifying the ratio of data for training
     --seed         Reproducing the result of data spliting in dataloader
     --data_path    Path to training data
+    --save_path    Path to save training weights
     ```
 
 ### Inference
