@@ -27,11 +27,11 @@ python setup.py install
 1. Convert cell/tissue data to training format.
    - cell:
         ```
-        python convert_masks.py --mode cell --cell_radius 5 --data_path path/to/cell_csv_folder/ --save_path path/to/cell_images/masks/
+        python convert_masks.py --mode cell --cell_radius 5 --data_path /path/to/cell_csv_folder/ --save_path /path/to/cell_images/masks/
         ```
     - tissue:
         ```
-        python convert_masks.py --mode tissue --data_path path/to/tissue_png_mask_folder/ --save_path path/to/tissue_images/masks/
+        python convert_masks.py --mode tissue --data_path /path/to/tissue_png_mask_folder/ --save_path /path/to/tissue_images/masks/
         ```
 2. Place the data (or create symlinks) to make the data folder like:
       ~~~
@@ -43,7 +43,6 @@ python setup.py install
       `-- |-- tissue
           `-- |-- images
            -- |-- masks
-    
       ~~~  
 ### Training
 
@@ -51,7 +50,7 @@ python setup.py install
 2. Run:
     - cell:
     ```
-    python train.py --mode cell --augmentation --data_path /work/wagw1014/OCELOT/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight /home/wagw1014/FCHarDNet/weights/hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 300 --name all5fold_cell_1c_r5 --loss structure_loss --cell_size 5 --kfold 5
+    python train.py --mode cell --augmentation --data_path /path/to/cell_images/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 300 --name cell_test --loss structure_loss --kfold 5
 
     Optional Args:
     --augmentation Activating data audmentation during training
@@ -63,7 +62,7 @@ python setup.py install
     ```
     - tissue:
     ```
-    python train.py --mod tissue --augmentation --data_path /work/wagw1014/OCELOT/tissue/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight /home/wagw1014/FCHarDNet/weights/hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 1000 --name all5fold_tissue_strloss_1000e --loss structure_loss --kfold 5
+    python train.py --mode tissue --augmentation --data_path /path/to/tissue_images/ --batchsize 16 --seed 42 --dataratio 0.8 --modelname fchardnet --weight hardnet_petite_base.pth --trainsize 1024 --lr 0.0001 --epoch 1000 --name tissue_test --loss structure_loss --kfold 5
 
     Optional Args:
     --augmentation Activating data audmentation during training
