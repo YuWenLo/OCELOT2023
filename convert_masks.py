@@ -78,15 +78,15 @@ if __name__ == '__main__':
             if filename.endswith('.png'):
                 print(filename)
                 mask_path = os.path.join(mask_directory, filename)
-                # 读取分割遮罩图像
+                # 讀取分割遮罩圖像
                 mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
 
-                # 创建三个空白的类别遮罩图像
+                # 創建三個空白的類別遮罩圖像
                 class0_mask = np.zeros_like(mask)
                 class1_mask = np.zeros_like(mask)
                 class2_mask = np.zeros_like(mask)
 
-                # 遍历每个像素，并根据像素值存储到相应的类别遮罩图像中
+                # 遍歷每個像素，並根據像素值存儲到相應的類別遮罩圖像中
                 for row in range(mask.shape[0]):
                     for col in range(mask.shape[1]):
                         pixel_value = mask[row, col]
@@ -100,7 +100,7 @@ if __name__ == '__main__':
                 # 提取檔案名稱，用於保存圖像
                 file_name = os.path.splitext(filename)[0]
 
-                # 保存类别遮罩图像
+                # 保存類別遮罩圖像
                 save_path = save_dir + file_name
                 cv2.imwrite(save_path + '_0.jpg', class0_mask)
                 cv2.imwrite(save_path + '_1.jpg', class1_mask)
