@@ -55,6 +55,7 @@ if __name__ == '__main__':
                     csvreader = csv.reader(csvfile)
                     for row in csvreader:
                         x, y, class_label = float(row[0]), float(row[1]), int(row[2])
+                        class_label = 1
                         gt_ann.append([x, y, class_label])
 
                 heatmap = get_ground_truth_heatmap(gt_ann, num_class, trainsize, image_shape)
