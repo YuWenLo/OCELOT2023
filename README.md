@@ -20,7 +20,8 @@ pip install -r requirements.txt
 ### FC-HarDNet Setting
 ```
 cd CatConv2d/
-python setup.py install
+pip install .
+python setup.py install --user
 ```
 
 ### Dataset preparation
